@@ -93,12 +93,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="col-md-12 text-center">
             <?php echo $error; ?>
         </div>
-        <div class="col-md-12 text-center">
+        <div class="col-md-6 text-center">
             <button class="btn btn-success" type="submit">Xong</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <a href="index.php" class="btn btn-primary">Tiếp tục mua hàng</a>
         </div>
     </div>
 
 </form>
+
 </div>
 <!-- End -->
 
