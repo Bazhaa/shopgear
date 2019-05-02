@@ -9,10 +9,10 @@
 
 <body>
 
-<div class="container" id="wrapper">
-    <br>
+
 <?php
 session_start();
+require_once('locations.php');
 require_once('products.php');
 require_once("mail.php");
 $error = '';
@@ -41,7 +41,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
+<div id="header">
+<?php include('header.php'); ?>
+</div>
+<div class="container" id="wrapper">
 
 <div><h2>Thanh toán</h2>
 <form action="" method="POST">
@@ -85,6 +88,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div><br>
     <div class="row">
         <div class="col-md-12">
+            <label> Tỉnh / Thành Phố: </label>
+            <select class="form-control">
+            <?php
+                
+                $provinces = getProvinces();
+                for($i=0; $i<count($provinces);$i++){
+            ?>       
+                <option data-provinceid="<?php echo $provinces[$i]['provinceid'];?>" value="<?php echo $provinces[$i]['provinceid'];?>"><?php echo $provinces[$i]['name'];?></option>
+            <?php
+                }
+            ?>
+            </select>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Quận / Huyện</label>
+            <select class="form-control">
+            <?php
+            $districts=getDistricts();
+            for($i=0; $i<count($districts);$i++){
+            ?>
+            <option data-provincesid="<?php echo  $districts[$i]['provinceid'];?>" value="<?php echo $districts[$i]['districtid']; ?>"><?php echo $districts[$i]['name'];?></option>     
+            <?php  
+            }
+            ?>
+            </select>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
             <label>Địa chỉ nhận</label>
             <textarea class="form-control" id="address" name="address" required="" type="text" placeholder="Địa chỉ"></textarea>
         </div>
@@ -106,6 +140,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/site.js"></script>
+    <?php include_once("footer.php"); ?>
 </body>
 
 </html>
