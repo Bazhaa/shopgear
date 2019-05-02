@@ -11,9 +11,9 @@
         return $firstname.' '.$lastname;
     }
 
-    function signup($username, $password, $firstname, $lastname, $phone) {
+    function signup($username, $password, $firstname, $lastname, $phone, $email) {
         $connection = getConnection();
-        $result = select($connection,"INSERT INTO users (username, password, firstname, lastname, phone, isadmin, active) VALUES ('$username', '$password', '$firstname', '$lastname', '$phone', 0, 1)");
+        $result = select($connection,"INSERT INTO users (username, password, firstname, lastname, phone, email, isadmin, active) VALUES ('$username', '$password', '$firstname', '$lastname', '$phone', '$email', 0, 1)");
         closeConnection($connection);
         return $result;
     }

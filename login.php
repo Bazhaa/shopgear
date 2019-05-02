@@ -2,9 +2,8 @@
     include_once('config.php');
     session_start();
     $error = '';
-    if (!isset($_SESSION["err"])) {
-        $_SESSION['err'] = 0;
-    }
+    
+
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $connection = getConnection();
         $myusername = mysqli_real_escape_string($connection,$_POST['username']);
@@ -29,11 +28,8 @@
             } else {
                 header("location: index.php");
             }
-        } else if ($_SESSION['err'] >= 3) {
-            $error = "Bạn đã nhập sai 3 lần, vui lòng thử lại sau";
         } else {
-            $_SESSION['err']++;
-            $error = "Sai tên đăng nhập hoặc mật khẩu".$_SESSION['err'];
+            $error = "Sai tên đăng nhập hoặc mật khẩu";
         }
      }    
 ?>
@@ -47,9 +43,7 @@
 </head>
 
 <body>
-    <div id="header">
-    <?php include ('header.php');?>
-    </div>
+
     <div class="container">
     <form action = "" method = "post" id="loginForm">
         <div class="row">
@@ -59,14 +53,14 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <label class="sr-only label" for="username">Email address </label>
-                <input class="form-control" id="username" name="username" autofocus="" required="" type="text" placeholder="User name">    
+                <label class="sr-only label" for="username">username</label>
+                <input class="form-control" id="username" name="username" autofocus required type="text" placeholder="Tên đăng nhập">    
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <label class="sr-only label" for="password">Password</label>
-                <input class="form-control" id="password" name="password" required="" type="password" placeholder="Password">
+                <input class="form-control" id="password" name="password" required type="password" placeholder="Mật khẩu">
             </div>
         </div>    
         <div class="row">
@@ -99,6 +93,5 @@
         </div>
       </form>
     </div>
-    <?php include_once('footer.php');?>
    </body>
 </html>
