@@ -28,9 +28,9 @@ switch($_GET["action"]) {
 	break;
 	case "remove":
 		if(!empty($_SESSION["cart_item"])) {
-			foreach($_SESSION["cart_item"] as $k => $v) {
-					if($_GET["id"] == $k)
-						unset($_SESSION["cart_item"][$k]);				
+			foreach($_SESSION["cart_item"] as $k => $v)  {
+					if($_GET["id"] == $v["id"]) 
+            unset($_SESSION["cart_item"][$k]);
 					if(empty($_SESSION["cart_item"]))
 						unset($_SESSION["cart_item"]);
 			}
@@ -67,6 +67,7 @@ switch($_GET["action"]) {
     <th><strong>Sản phẩm</strong></th>
     <th><strong>Số lượng</strong></th>
     <th><strong>Giá</strong></th>
+    <th><strong>Xóa</strong></th>
     </tr>	
     <?php		
         foreach ($_SESSION["cart_item"] as $item){
@@ -75,6 +76,9 @@ switch($_GET["action"]) {
                     <td><strong><?php echo $item["name"]; ?></strong></td>
                     <td><?php echo $item["quantity"]; ?></td>
                     <td><?php echo formatPrice($item["price"])." VND"; ?></td>
+                    <td>
+                    <a href="?action=remove&id=<?php echo $item["id"]; ?>" class="btn btn-danger">&times;</a>
+                    </td>                    
                     </tr>
                     <?php
             $item_total += ($item["price"]*$item["quantity"]);
@@ -92,7 +96,10 @@ switch($_GET["action"]) {
     </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-success" href="payment.php">Thanh toán</a>
+        <?php if (isset($_SESSION["cart_item"])) { ?>
+          <a class="btn btn-success" href="<?php if (isset($_SESSION["login_user"])) echo "payment.php";
+                                                  else echo "login.php"; ?>">Thanh toán</a>
+        <?php } ?>
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
       </div>
     </div>
