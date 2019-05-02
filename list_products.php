@@ -1,3 +1,6 @@
+
+
+
 <html>
 
 <head>
@@ -71,8 +74,11 @@
         $pagecount = 1;
         if (isset($_GET['page'])) $page = $_GET['page'];
         if(isset($_GET['subcateid'])) {
-            $products = getProductsBySubcateId($_GET['subcateid'], $page);
-            $pagecount = countPageProductsBySubcateId($_GET['subcateid']);
+          $products = getProductsBySubcateId($_GET['subcateid'], $page);
+          $pagecount = countPageProductsBySubcateId($_GET['subcateid']);
+        }
+        if (isset($_GET["search"])) {
+          $products = searchProductsByName($_GET["search"]);
         }
         if (count($products) == 0) {
         ?>

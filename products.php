@@ -14,6 +14,18 @@
         return $categories;
     }
 
+    function searchProductsByName($name) {
+        $connection = getConnection();
+        $sql = "SELECT * FROM products WHERE name LIKE '%$name%'";
+        $result = select($connection, $sql);
+        closeConnection($connection);
+        $products = array();
+        while($item = mysqli_fetch_array($result)) {
+            $products[] = $item;
+        }
+        return $products;
+    }
+
     function addCategory($name, $description) {
         $connection = getConnection();
         $sql = "INSERT INTO categories (name, description, active) VALUES ('$name', '$description', 1)";

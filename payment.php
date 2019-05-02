@@ -15,6 +15,8 @@ session_start();
 require_once('locations.php');
 require_once('products.php');
 require_once("mail.php");
+require_once('users.php');
+
 $error = '';
 if(isset($_SESSION["cart_item"])){
     $item_total = 0;
@@ -22,6 +24,8 @@ if(isset($_SESSION["cart_item"])){
         $item_total += ($item["price"]*$item["quantity"]);
     }
 }
+
+$user = getUserById($_SESSION["id"]);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection = getConnection();
@@ -41,9 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-<div id="header">
-<?php include('header.php'); ?>
-</div>
+
 <div class="container" id="wrapper">
 
 <div><h2>Thanh toán</h2>
@@ -77,21 +79,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row">
         <div class="col-md-12">
             <label>Người nhận</label>
-            <input class="form-control" id="to" name="to" required="" type="text" placeholder="Họ và tên">
+            <input class="form-control" id="name" name="name" required type="text" placeholder="Tên người nhận" value="<?php echo $user['username'] ?>">
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Email</label>
+            <input class="form-control" id="email" name="email" required type="email" placeholder="Email" value="<?php echo $user['email'] ?>">
         </div>
     </div><br>
     <div class="row">
         <div class="col-md-12">
             <label>Sđt người nhận</label>
-            <input class="form-control" id="phone" name="phone" required="" type="text" placeholder="Số điện thoại">
+            <input class="form-control" id="phone" name="phone" required type="tel" pattern="[0-9]{10}" placeholder="Số điện thoại" value="<?php echo $user['phone'] ?>">
         </div>
     </div><br>
+    
     <div class="row">
         <div class="col-md-12">
-            <label> Tỉnh / Thành Phố: </label>
-            <select class="form-control">
+            <label> Tỉnh / Thành Phố</label>
+            <select class="form-control" id="province" required>
             <?php
-                
                 $provinces = getProvinces();
                 for($i=0; $i<count($provinces);$i++){
             ?>       
@@ -105,22 +113,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row">
         <div class="col-md-12">
             <label>Quận / Huyện</label>
-            <select class="form-control">
-            <?php
-            $districts=getDistricts();
-            for($i=0; $i<count($districts);$i++){
-            ?>
-            <option data-provincesid="<?php echo  $districts[$i]['provinceid'];?>" value="<?php echo $districts[$i]['districtid']; ?>"><?php echo $districts[$i]['name'];?></option>     
-            <?php  
-            }
-            ?>
+            <select class="form-control" id="district" required>
             </select>
         </div>
     </div><br>
     <div class="row">
         <div class="col-md-12">
             <label>Địa chỉ nhận</label>
-            <textarea class="form-control" id="address" name="address" required="" type="text" placeholder="Địa chỉ"></textarea>
+            <textarea class="form-control" id="address" name="address" required type="text" placeholder="Địa chỉ"></textarea>
         </div>
     </div><br>
     <div class="row">
@@ -144,7 +144,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/site.js"></script>
-    <?php include_once("footer.php"); ?>
 </body>
 
 </html>

@@ -6,7 +6,6 @@
    <link rel="stylesheet" href="css/styles.css" />
    <script type="text/javascript" src="js/bootstrap.js"></script>
 </head>
-
 <body>
     <div id="loginForm" class="container">
         <div class="row">

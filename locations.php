@@ -37,7 +37,7 @@
 
     function getDistrictsByProvinceId($provinceid) {
         $connection = getConnection();
-        $sql = "SELECT provinces.name AS provincename, districts.* FROM districts LEFT JOIN provinces ON districts.provinceid = provinces.provinceid WHERE provinceid=$provinceid";
+        $sql = "SELECT * FROM districts WHERE provinceid = $provinceid";
         $result = select($connection, $sql);
         closeConnection($connection);
         $districts = array();

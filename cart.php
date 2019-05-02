@@ -98,7 +98,7 @@ switch($_GET["action"]) {
       <div class="modal-footer">
         <?php if (isset($_SESSION["cart_item"])) { ?>
           <a class="btn btn-success" href="<?php if (isset($_SESSION["login_user"])) echo "payment.php";
-                                                  else echo "login.php"; ?>">Thanh toán</a>
+                                                  else echo "login.php?url=payment.php"; ?>">Thanh toán</a>
         <?php } ?>
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
       </div>
