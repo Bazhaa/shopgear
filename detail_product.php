@@ -176,10 +176,10 @@
 </div>
 <!-- End of products -->
 </div>
-            <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-            <script type="text/javascript" src="js/bootstrap.js"></script>
-            <script type="text/javascript" src="js/site.js"></script>
-
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/site.js"></script>
+  <?php include_once("footer.php"); ?>
 </body>
 
 </html>

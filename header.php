@@ -1,7 +1,7 @@
-<?php
+<!-- <?php
     include_once('users.php');
     session_start();
-?>
+?> -->
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">

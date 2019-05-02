@@ -36,6 +36,9 @@
 </head>
 
 <body>
+    <div id="header">
+    <?php include ('header.php');?>
+    </div>
     <div class="container">
     <form action = "" method = "post" id="loginForm">
         <div class="row">
@@ -101,9 +104,12 @@
         </div>
       </form>
     </div>
+    <div>
+    <?php include_once('footer.php');?>
+    </div>
    </body>
 </html>
 
-<?php
+<!-- <?php
     }
-?>
+?> -->
