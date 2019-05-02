@@ -124,7 +124,7 @@
             </table>
             <div class="product-purchase">
               <form method="post" action="?action=add&id=<?php echo $product["id"]; ?>">
-              <div><b>Số lượng</b>: <input type="text" name="quantity" value="1" size="2" />
+              <div><b>Số lượng</b>: <input type="number" min=1 max=10 value=1 name="quantity" />
               <input type="submit" value="Thêm vào giỏ hàng" class="btn btn-sm" /></div>
             </div>
             </form>
