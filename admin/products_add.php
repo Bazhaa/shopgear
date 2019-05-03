@@ -15,9 +15,12 @@
         $name = mysqli_real_escape_string($connection,$_POST['name']);
         $producer = mysqli_real_escape_string($connection,$_POST['producer']);
         $remaining = $_POST['remaining'];
+        $origin = $_POST['origin'];
+        $date = $_POST['date'];
+        $warranty = $_POST['warranty'];
         $price = $_POST['price'];
 
-        if (addProduct($cateid, $subcateid, $name, $producer, $remaining, $price, $description)) {
+        if (addProduct($cateid, $subcateid, $name, $producer, $remaining, $price, $description, $origin, $warranty, $date)) {
             header("Location:products.php?subcateid=".$subcateid);
         }
     }
@@ -107,7 +110,19 @@
         <div class="form-group">
         <label for="pwd">Số lượng:</label>
         <input type="number" class="form-control" id="remaining" name="remaining">
+        </div>
+        <div class="form-group">
+        <label for="pwd">Xuất xứ:</label>
+        <input type="text" class="form-control" id="origin" name="origin">
+        </div>
+        <div class="form-group">
+        <label for="pwd">Thời hạn bảo hành (tháng):</label>
+        <input type="number" class="form-control" id="warranty" name="warranty">
         </div> 
+        <div class="form-group">                   
+        <label for="pwd">Năm sản xuất:</label>
+        <input type="number" class="form-control" id="date" name="date">        
+        </div>  
         <div class="form-group">
         <label for="pwd">Mô tả sản phẩm:</label>
         <textarea id="description" name="description"></textarea>
