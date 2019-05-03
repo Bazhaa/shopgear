@@ -11,11 +11,12 @@
                     <a href="index.php"><img class="logo" src="img/logo.png"></a>
                 </li>
             </ul>
-            <form method = "GET" action = "list_products.php">
-                <div class="navbar navbar-nav search">
-                    <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-                </div>
-            </form>
+            <ul class="nav navbar-nav">                
+                <li method = "GET" action = "list_products.php">
+                    <a><input class="form-control" name="search" type="text" placeholder="Tìm Kiếm..." aria-label="Search"></a>
+                </li>                
+            </ul>
+            
             <ul class="nav navbar-nav navbar-right">
                 <li>
                 <a href="#" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>

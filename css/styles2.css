@@ -129,7 +129,7 @@ label.invalid {
 	border: 2px solid #e1e1e1;
 	background: linear-gradient( #F5F5F5, #FFFFFF);
 	padding: 6px 15px;
-	margin: 10px 0;
+	margin: 20px 10px 15px 10px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
